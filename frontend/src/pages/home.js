@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { handleError, handleSuccess } from '../utils';
 import { ToastContainer } from 'react-toastify';
-import { API_ENDPOINTS } from '../config';
 
 function Home() {
     const [loggedInUser, setLoggedInUser] = useState('');
@@ -12,14 +11,13 @@ function Home() {
     
     useEffect(() => {
         const token = localStorage.getItem('token');
-        const user = localStorage.getItem('loggedInUser');
         if (!token) {
             navigate('/login');
             return;
         }
-        setLoggedInUser(user);
+        // setLoggedInUser(user);
         fetchDashboardData();
-    }, [])
+    }, [navigate])
 
     const handleLogout = (e) => {
         e.preventDefault();
